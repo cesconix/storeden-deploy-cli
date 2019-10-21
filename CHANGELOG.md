@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/cesconix/storeden-deploy-cli/compare/v0.1.2...v0.1.3) (2019-10-21)
+
+
+### Bug Fixes
+
+* minor changes ([049766f](https://github.com/cesconix/storeden-deploy-cli/commit/049766f7d756a88d8c172ffc8f44569fb621eda0))
+
 ### [0.1.2](https://github.com/cesconix/storeden-deploy-cli/compare/v0.1.1...v0.1.2) (2019-10-21)
 
 
