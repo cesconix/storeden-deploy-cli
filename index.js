@@ -51,15 +51,7 @@ const argv = yargs
 
   try {
     const hrstart = process.hrtime()
-    // await deploy({ ...argv, emitter })
-    await deploy({
-      apiKey:
-        'd27f134fe4c92986a528376f33a16c3660dd9b4d198359435da5f4f1f1a2d780425668',
-      apiExchange:
-        '83c79cc5fb832839465df5d96fef15cae10584b58ab9379249ecbdd9bbe33ad7',
-      sourcePath: '/Users/cesconix/Downloads/official',
-      emitter
-    })
+    await deploy({ ...argv, emitter })
     const hrend = process.hrtime(hrstart)
     const executionTime = ((hrend[0] * 1e9 + hrend[1]) / 1e9).toFixed(1)
 
