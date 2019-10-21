@@ -1,0 +1,44 @@
+{
+  "name": "storeden-deploy-cli",
+  "version": "0.1.0",
+  "description": "CLI to deploy template on a Storeden instance",
+  "license": "MIT",
+  "repository": "github:cesconix/storeden-deploy-cli",
+  "homepage": "https://github.com/cesconix/storeden-deploy-cli#readme",
+  "bugs": "https://github.com/cesconix/storeden-deploy-cli/issues",
+  "keywords": [
+    "cli",
+    "storeden",
+    "deploy",
+    "api",
+    "theme",
+    "template"
+  ],
+  "author": "Francesco Pasqua <cesconix@me.com>",
+  "main": "./index.js",
+  "preferGlobal": true,
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "storeden-deploy": "./index.js"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "ora": "^4.0.2",
+    "storeden-deploy": "^0.1.5",
+    "yargs": "^14.2.0"
+  },
+  "devDependencies": {
+    "standard": "^14.3.1",
+    "standard-version": "^7.0.0"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}
