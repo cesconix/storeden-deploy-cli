@@ -9,7 +9,7 @@ const yargs = require('yargs')
 const debounce = require('lodash.debounce')
 const clear = require('clear')
 const deploy = require('storeden-deploy')
-const package = require('./package.json')
+const packageJson = require('./package.json')
 
 const argv = yargs
   .usage('Usage: $0 [options]')
@@ -98,7 +98,7 @@ const handleChanges = async (eventType, filename) => {
   if (argv.watch) {
     clear()
     console.log(
-      chalk.bold(`Storeden Deploy CLI v${package.version}\n\n`) +
+      chalk.bold(`Storeden Deploy CLI v${packageJson.version}\n\n`) +
         `🔍 Watching for file changes on ${chalk.cyan(
           argv.sourcePath.source
         )}...`
