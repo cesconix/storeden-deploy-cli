@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
 const { EventEmitter } = require('events')
+const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 const Ora = require('ora')
 const yargs = require('yargs')
+const debounce = require('lodash.debounce')
+const clear = require('clear')
 const deploy = require('storeden-deploy')
+const package = require('./package.json')
 
 const argv = yargs
   .usage('Usage: $0 [options]')
@@ -28,11 +32,17 @@ const argv = yargs
     const [source, exclude] = arg.split(':')
     return { source: path.resolve(source), exclude }
   })
+  .option('watch', {
+    alias: 'w',
+    describe: 'Enable watch mode to deploy automatically',
+    type: 'boolean',
+    demandOption: false
+  })
   .demandCommand(0, 0)
   .help()
   .version().argv
 
-;(async () => {
+const run = async argv => {
   const spinner = new Ora()
   const emitter = new EventEmitter()
 
@@ -61,10 +71,44 @@ const argv = yargs
         chalk.gray('[' + executionTime + 's]')
     )
 
-    process.exit(0)
+    if (!argv.watch) {
+      process.exit(0)
+    }
   } catch (e) {
     spinner.fail(e.message)
     console.log(chalk.red('Deploy failed'))
-    process.exit(1)
+    if (!argv.watch) {
+      process.exit(1)
+    }
+  }
+}
+
+const handleChanges = async (eventType, filename) => {
+  if (filename) {
+    console.log(
+      `\n🚚 Detected ${chalk.cyan(eventType)} to ${chalk.cyan(
+        filename
+      )}. Deploying...`
+    )
+    await run(argv)
+  }
+}
+
+;(async () => {
+  if (argv.watch) {
+    clear()
+    console.log(
+      chalk.bold(`Storeden Deploy CLI v${package.version}\n\n`) +
+        `🔍 Watching for file changes on ${chalk.cyan(
+          argv.sourcePath.source
+        )}...`
+    )
+    fs.watch(
+      argv.sourcePath.source,
+      { recursive: true },
+      debounce(handleChanges, 100)
+    )
+  } else {
+    await run(argv)
   }
 })()
