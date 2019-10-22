@@ -31,19 +31,21 @@ Options:
   --apiKey, -k       API Key associated with your Storeden Store      [required]
   --apiExchange, -e  API Exchange associated with your Storeden Store [required]
   --sourcePath, -p   Path to template folder to deploy                [required]
+  --watch, -w        Enable watch mode to deploy automatically         [boolean]
   --help             Show help                                         [boolean]
   --version          Show version number                               [boolean]
 
 Missing required arguments: apiKey, apiExchange, sourcePath
 ```
 
-### Example - Deploy template
+### Example - Deploy template with watch mode enabled
 
 ```bash
 $ storeden-deploy \
   --apiKey 'd27f134FAKE8376f' \
   --apiExchange '83cc5fb8FAKEdd9b' \
   --sourcePath './storeden/dist'
+  --watch
 ```
 
 ### Example - Deploy template excluding some directory or file
@@ -52,14 +54,12 @@ $ storeden-deploy \
 $ storeden-deploy \
   --apiKey 'd27f134FAKE8376f' \
   --apiExchange '83cc5fb8FAKEdd9b' \
-  --sourcePath './storeden/dist:**/{widgets,generated/**'
+  --sourcePath './storeden/dist:**/{widgets,generated}/**'
 ```
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 
