@@ -1,6 +1,6 @@
 {
   "name": "storeden-deploy-cli",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "CLI to deploy template on a Storeden instance",
   "license": "MIT",
   "repository": "github:cesconix/storeden-deploy-cli",
